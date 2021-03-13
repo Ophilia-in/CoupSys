@@ -25,6 +25,7 @@ class IndividualTransactionRecord extends StatelessWidget {
 }
 
 coupan(TransactionRecord transactionRecord) {
+  
   return ExpansionTile(
       childrenPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       expandedAlignment: Alignment.centerLeft,
@@ -36,20 +37,23 @@ coupan(TransactionRecord transactionRecord) {
         ),
         Text("Receiver Phone : " + transactionRecord.receiverPhone),
         Text("Transaction Id : " + transactionRecord.transactionId),
+        Text("Reciever Name : " + transactionRecord.recieverName ??
+            "Not Available"),
         FlatButton(
             disabledColor: Colors.green,
             color: Colors.blue,
-            onPressed: transactionRecord.paid
-                ? null
-                : () async {
-                    await markasPaid(transactionRecord).then((value) {
-                      if (value == true) {
-                        Fluttertoast.showToast(msg: "Marked As Paid");
-                      } else {
-                        Fluttertoast.showToast(msg: value.toString());
-                      }
-                    });
-                  },
+            onPressed: null,
+            // onPressed: transactionRecord.paid
+            //     ? null
+            //     : () async {
+            //         await markasPaid(transactionRecord).then((value) {
+            //           if (value == true) {
+            //             Fluttertoast.showToast(msg: "Marked As Paid");
+            //           } else {
+            //             Fluttertoast.showToast(msg: value.toString());
+            //           }
+            //         });
+            //       },
             child: Center(
                 child: Text(
               transactionRecord.paid ? "Credited" : "Mark As Credited",
@@ -82,23 +86,29 @@ redeemed(TransactionRecord transactionRecord) {
         Text("Dealer Phone : " + transactionRecord.receiverPhone),
         Text("Sender Phone : " + transactionRecord.senderPhone),
         Text("Transaction Id : " + transactionRecord.transactionId),
+        Text("Reciever Name : " + transactionRecord.recieverName ??
+            "Not Available"),
+        transactionRecord.markedAsPaidAt!=null ?
+        Text("Received at : " + DateFormat('dd MMM y kk:mm').format(transactionRecord.date)):
+        Text("Received At : "+"Not yet Received"),
         FlatButton(
             disabledColor: Colors.green,
             color: Colors.blue,
-            onPressed: transactionRecord.paid
-                ? null
-                : () async {
-                    await markasPaid(transactionRecord).then((value) {
-                      if (value == true) {
-                        Fluttertoast.showToast(msg: "Marked As Paid");
-                      } else {
-                        Fluttertoast.showToast(msg: value.toString());
-                      }
-                    });
-                  },
+            onPressed: null,
+            // onPressed: transactionRecord.paid
+            //     ? null
+            //     : () async {
+            //         await markasPaid(transactionRecord).then((value) {
+            //           if (value == true) {
+            //             Fluttertoast.showToast(msg: "Marked As Paid");
+            //           } else {
+            //             Fluttertoast.showToast(msg: value.toString());
+            //           }
+            //         });
+            //       },
             child: Center(
                 child: Text(
-              transactionRecord.paid ? "Recieved" : "Mark As Recieved",
+              transactionRecord.paid ? "Recieved" : "Collect Cash From Dealer",
               style: TextStyle(color: Colors.white),
             )))
       ],

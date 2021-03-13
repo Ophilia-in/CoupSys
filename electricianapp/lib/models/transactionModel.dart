@@ -12,9 +12,12 @@ class TransactionRecord {
   final String transactionId;
   final String dealerId;
   final String subType;
+  final String recieverName;
+  final String senderName;
+  final String markedAsPaidAt;
 
   TransactionRecord(
-      {this.type,
+      {this.type,this.recieverName, this.senderName, this.markedAsPaidAt, 
       this.subType,
       this.dealerId,
       this.points,

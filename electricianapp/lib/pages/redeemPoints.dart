@@ -387,6 +387,9 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                                     "subType": "DEBIT",
                                                     "amount": calculate(
                                                         _enteredpoints),
+                                                    "senderName": myUser.name,
+                                                    "receiverName": dealerResult
+                                                        .data()["name"],
                                                     "senderPhone":
                                                         myUser.phone.toString(),
                                                     "senderUid": myUser.uid,
@@ -412,6 +415,10 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                                           dealerResult
                                                               .data()["phone"],
                                                       "senderUid": myUser.uid,
+                                                      "senderName": myUser.name,
+                                                      "receiverName":
+                                                          dealerResult
+                                                              .data()["name"],
                                                       "receiverUid":
                                                           dealerResult
                                                               .data()["uid"],
@@ -432,6 +439,10 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                                       "senderPhone":
                                                           myUser.phone,
                                                       "points": -_enteredpoints,
+                                                      "senderName": myUser.name,
+                                                      "receiverName":
+                                                          dealerResult
+                                                              .data()["name"],
                                                       "senderUid": myUser.uid,
                                                       "receiverUid":
                                                           dealerResult

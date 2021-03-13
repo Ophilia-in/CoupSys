@@ -138,7 +138,9 @@ class _AddCoupanState extends State<AddCoupan> {
                               "type": "Coupan",
                               "subType": "CREDIT",
                               "time": DateTime.now(),
-                              "paid": true
+                              "paid": true,
+                              "receiverName": myUser.name,
+                              "senderName": "System"
                             }).then((newdoc) {
                               FirebaseFirestore.instance
                                   .collection("Member")
@@ -153,7 +155,9 @@ class _AddCoupanState extends State<AddCoupan> {
                                 "date": DateTime.now(),
                                 "points": value.data()["points"],
                                 "type": "Coupan",
-                                "subType": "CREDIT"
+                                "subType": "CREDIT",
+                                "receiverName": myUser.name,
+                                "senderName": "System"
                               }).whenComplete(() async {
                                 Navigator.of(context).pop();
                                 await FirebaseFirestore.instance
