@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "88966474261",
+    "project_id": "coupon-system-9954a",
+    "storage_bucket": "coupon-system-9954a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88966474261:android:3ec3ccab303bb20ba4fc1c",
+        "android_client_info": {
+          "package_name": "com.electraelectric.adminapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88966474261-6mrgehdfb9src9taehhjhaund45gj9au.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.electraelectric.adminapp",
+            "certificate_hash": "8556ee7e742e53832083e095629dc52231f5c942"
+          }
+        },
+        {
+          "client_id": "88966474261-omht5mevcro8so9ri1p7uhs01giekakr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNRwLieiMV0JFS-dcciUNeZFIYzlixCyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88966474261-omht5mevcro8so9ri1p7uhs01giekakr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
