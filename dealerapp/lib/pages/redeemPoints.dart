@@ -83,7 +83,7 @@ class _RedeemPointsState extends State<RedeemPoints> {
                   alignment: Alignment.center,
                   child: Lottie.asset("assets/bulb.json"));
             else {
-              if (snapshot.data.data()["points"] < 100) {
+              if (snapshot.data.data()["points"] < 500) {
                 myUser..points = snapshot.data.data()["points"];
                 Fluttertoast.showToast(msg: "You have Insufficient Points");
                 update(myUser);
@@ -94,7 +94,7 @@ class _RedeemPointsState extends State<RedeemPoints> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "You need ${100 - myUser.points} more points to redeem",
+                          "You need ${500 - myUser.points} more points to redeem",
                           softWrap: true,
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 30),
@@ -149,13 +149,13 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                 _enteredpoints = 0;
                                 _redeeming = "";
                               });
-                            } else if (temp < 100) {
+                            } else if (temp < 500) {
                               setState(() {
                                 _enteredpoints = temp;
-                                _errorText = "Enter Greater than 100 ";
+                                _errorText = "Enter Greater than 500 ";
                                 _redeeming = "";
                               });
-                            } else if (temp > snapshot.data.data()["points"]) {
+                            } else if (temp >= snapshot.data.data()["points"]) {
                               setState(() {
                                 _errorText = "You dont have this much points";
                                 _enteredpoints = 0;
@@ -200,7 +200,7 @@ class _RedeemPointsState extends State<RedeemPoints> {
                               ),
                               disabledColor: Colors.red,
                               onPressed: _enteredpoints != null
-                                  ? (_enteredpoints > 100 &&
+                                  ? (_enteredpoints >= 500 &&
                                           _enteredpoints <=
                                               snapshot.data.data()["points"])
                                       ? () async {
@@ -282,7 +282,11 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                               "senderPhone":
                                                   myUser.phone.toString(),
                                               "senderUid": myUser.uid,
-                                              "receiverPhone": null,
+                                              "receiverPhone":
+                                                  dealerResult.data()["phone"],
+                                              "receiverName":
+                                                  dealerResult.data()["name"],
+                                              "senderName": myUser.name,
                                               "dealerId": myUser.dealerId,
                                               "receiverUid":
                                                   dealerResult.data()["uid"],
@@ -309,10 +313,13 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                                   .doc(newdoc.id)
                                                   .set({
                                                 "senderPhone": myUser.phone,
-                                                "receiverPhone": null,
-                                                "paid":false,
+                                                "receiverPhone": dealerResult.data()["phone"],
+                                                "paid": false,
                                                 "senderUid": myUser.uid,
                                                 "dealerId": myUser.dealerId,
+                                                "receiverName":
+                                                    dealerResult.data()["name"],
+                                                "senderName": myUser.name,
                                                 "receiverUid":
                                                     dealerResult.data()["uid"],
                                                 "date": DateTime.now(),
@@ -331,8 +338,11 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                                 "date": DateTime.now(),
                                                 "senderPhone": myUser.phone,
                                                 "points": -_enteredpoints,
+                                                "receiverName":
+                                                    dealerResult.data()["name"],
+                                                "senderName": myUser.name,
                                                 "senderUid": myUser.uid,
-                                                "receiverPhone": null,
+                                                "receiverPhone": dealerResult.data()["phone"],
                                                 "receiverUid":
                                                     dealerResult.data()["uid"],
                                                 "amount":

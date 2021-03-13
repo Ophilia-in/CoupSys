@@ -134,7 +134,7 @@ class _NotAllowedState extends State<NotAllowed> {
                               ),
                             )
                         else
-                          Text(snapshot.error.toString())
+                          Center(child: Text(snapshot.error.toString()))
                       ],
                     );
                   });

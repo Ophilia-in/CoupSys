@@ -13,8 +13,14 @@ class TransactionRecord {
 
   final String coupancode;
   final bool paid;
+  final String senderName;
+  final String recieverName;
+  final DateTime markedAsPaidAt;
+
   TransactionRecord(
-      {
+      {this.senderName,
+      this.recieverName,
+      this.markedAsPaidAt,
       this.type,
       this.subType,
       this.dealerId,

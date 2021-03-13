@@ -37,6 +37,11 @@ credit(TransactionRecord transactionRecord) {
         ),
         Text("Receiver Phone : " + transactionRecord.receiverPhone),
         Text("Transaction Id : " + transactionRecord.transactionId),
+        Text("Sender Name : " + transactionRecord.senderName),
+        transactionRecord.markedAsPaidAt != null
+            ? Text("Paid at : " +
+                DateFormat('dd MMM y kk:mm').format(transactionRecord.date))
+            : Text("Paid At : " + "Not yet Paid"),
         FlatButton(
             disabledColor: Colors.green,
             color: Colors.blue,
@@ -73,6 +78,7 @@ credit(TransactionRecord transactionRecord) {
 }
 
 redeemed(TransactionRecord transactionRecord) {
+  transactionRecord.markedAsPaidAt!=null?print(""):print("null");
   return ExpansionTile(
       childrenPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       expandedAlignment: Alignment.centerLeft,
@@ -85,23 +91,30 @@ redeemed(TransactionRecord transactionRecord) {
         Text("Dealer Phone : " + transactionRecord.receiverPhone),
         Text("Sender Phone : " + transactionRecord.senderPhone),
         Text("Transaction Id : " + transactionRecord.transactionId),
+        Text("Sender Name : " + transactionRecord.senderName),
+        transactionRecord.markedAsPaidAt != null
+            ? Text("Received at : " +
+               DateFormat('dd MMM y kk:mm').format(transactionRecord.markedAsPaidAt))
+            : Text("Received At : " + "Not yet Received"),
         FlatButton(
             disabledColor: Colors.green,
             color: Colors.blue,
-            onPressed: transactionRecord.paid
-                ? null
-                : () async {
-                    await markasPaid(transactionRecord).then((value) {
-                      if (value == true) {
-                        Fluttertoast.showToast(msg: "Marked As Received");
-                      } else {
-                        Fluttertoast.showToast(msg: value.toString());
-                      }
-                    });
-                  },
+            onPressed:
+                // transactionRecord.paid
+                //     ?
+                null,
+            // : () async {
+            //     await markasPaid(transactionRecord).then((value) {
+            //       if (value == true) {
+            //         Fluttertoast.showToast(msg: "Marked As Received");
+            //       } else {
+            //         Fluttertoast.showToast(msg: value.toString());
+            //       }
+            //     });
+            //   },
             child: Center(
                 child: Text(
-              transactionRecord.paid ? "Received" : "Mark As Received",
+              transactionRecord.paid ? "Received" : "Collect Cash From Company",
               style: TextStyle(color: Colors.white),
             )))
       ],

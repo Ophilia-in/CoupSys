@@ -9,7 +9,7 @@ const userBox = 'MyDealer';
 
 List<int> slots = [100, 500, 1000, 2500, 5000, 10000, 50000];
 
-String jsonurl = "https://official-ophilia.github.io/coupons.json";
+String jsonurl = "https://ophilia-in.github.io/coupons.json";
 
 TextStyle sheettext = TextStyle(
   fontSize: 17,
