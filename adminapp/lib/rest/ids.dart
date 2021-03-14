@@ -17,7 +17,7 @@ Ids(List<dynamic> ids, double _width) {
                     CircularProgressIndicator(
                       value: progress.progress,
                     ),
-                fit: BoxFit.fill)),
+                )),
       ),
       SizedBox(
         height: 10,
@@ -32,7 +32,7 @@ Ids(List<dynamic> ids, double _width) {
                       value: progress.progress,
                     ),
                 imageUrl: ids[1],
-                fit: BoxFit.fill)),
+                )),
       ),
       SizedBox(
         height: 10,
@@ -47,7 +47,7 @@ Ids(List<dynamic> ids, double _width) {
                       value: progress.progress,
                     ),
                 imageUrl: ids[2],
-                fit: BoxFit.fill)),
+                )),
       ),
       SizedBox(
         height: 20,

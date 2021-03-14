@@ -21,8 +21,7 @@ class Dealers extends StatelessWidget {
       body: StreamBuilder<List<Dealer>>(
         stream: FirebaseFirestore.instance
             .collection("Member")
-            .orderBy("dealerId")
-            .where("dealerId", isGreaterThanOrEqualTo: "")
+            .where("dealerId", isGreaterThanOrEqualTo: "").orderBy("dealerId")
             .limit(10)
             .snapshots()
             .map(dealerfromSnapshots),

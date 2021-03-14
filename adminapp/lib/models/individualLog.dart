@@ -33,7 +33,7 @@ credit(Log log) {
           "Reciever Phone : " + log.receiverPhone.toString(),
           textAlign: TextAlign.left,
         ),
-        Text("Reciever Uid : " + log.receiverUid),
+        Text("Reciever Name : " + log.recieverName),
         Text("Transaction Id : " + log.transactionId),
         FlatButton(
             disabledColor: Colors.green,
@@ -72,21 +72,27 @@ redeemed(Log log) {
       expandedAlignment: Alignment.centerLeft,
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Dealer Id : " + log.dealerId.toString(),
-          textAlign: TextAlign.left,
-        ),
-        Text("Dealer Phone : " + log.receiverPhone),
+        (log.recieverName == "Admin" || log.recieverName == '"Admin"')
+            ? Center(child: Text("Dealer Redeem" , style: TextStyle(fontWeight: FontWeight.bold),))
+            : Center(
+                child: Text("Electrician Redeem",style: TextStyle(fontWeight: FontWeight.bold),),
+              ),
+        Text("Dealer Id : " + log.dealerId.toString()),
+        Text("Receiver Phone : " + log.receiverPhone),
         Text("Sender Phone : " + log.senderPhone),
-        Text("Reciever Uid : " + log.receiverUid),
-        Text("Sender Uid : " + log.senderUid),
+        Text("Reciever Name : " + log.recieverName),
+        Text("Sender Name : " + log.senderName),
         Text("Transaction Id : " + log.transactionId),
+        log.markedAsPaidAt != null
+            ? Text("Paid at : " + DateFormat('dd MMM y kk:mm').format(log.date))
+            : Text("Paid At : " + "Not yet Paid"),
         FlatButton(
             disabledColor: Colors.green,
             color: Colors.blue,
-            onPressed: log.paid
-                ? null
-                : () async {
+            onPressed: (log.paid == false &&
+                    (log.recieverName == "Admin" ||
+                        log.recieverName == '"Admin"'))
+                ? () async {
                     await markTransactionasPaid(log).then((value) {
                       if (value == true) {
                         Fluttertoast.showToast(msg: "Marked As Paid");
@@ -94,10 +100,16 @@ redeemed(Log log) {
                         Fluttertoast.showToast(msg: value.toString());
                       }
                     });
-                  },
+                  }
+                : null,
             child: Center(
                 child: Text(
-              log.paid ? "Paid" : "Mark As Paid",
+              (log.paid == true)
+                  ? "Paid"
+                  : (log.recieverName == "Admin" ||
+                          log.recieverName == '"Admin"')
+                      ? "Mark As Paid"
+                      : "You cant Mark it as Paid",
               style: TextStyle(color: Colors.white),
             )))
       ],

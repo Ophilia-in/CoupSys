@@ -309,6 +309,10 @@ class _IndividualVerifyState extends State<IndividualVerify> {
                 subtitle: Text(widget.data.data()["emailID"]),
               ),
               ListTile(
+                title: Text("Firm Name"),
+                subtitle: Text(widget.data.data()["firmName"]??"Not Available"),
+              ),
+              ListTile(
                 title: Text("Created At"),
                 subtitle: Text(DateFormat('dd MMM y kk:mm')
                     .format(widget.data.data()["createdAt"].toDate())),

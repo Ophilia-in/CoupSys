@@ -13,8 +13,14 @@ class Log {
   final String dealerId;
   final String subType;
 
+  final String senderName;
+  final String recieverName;
+  final DateTime markedAsPaidAt;
+
   Log(
-      {this.type,
+      {this.markedAsPaidAt,
+      this.senderName, this.recieverName, 
+      this.type,
       this.subType,
       this.dealerId,
       this.points,

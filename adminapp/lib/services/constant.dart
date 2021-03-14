@@ -10,7 +10,7 @@ const userBox = 'MyAdmin';
 const couponurl =
     "https://script.google.com/macros/s/AKfycbw5daXD0y3mgOUWHe3_AWNYrkPb8o0Bht1NP2WKpLvDpkefU2jsQsE5r4y4bu6O72o9rw/exec";
 
-const dbAdminUiD = " iwrCOg0zjAfC63WSckKZwv2xK0l2";
+const dbAdminUiD = "iwrCOg0zjAfC63WSckKZwv2xK0l2";
 
 String jsonurl = "https://official-ophilia.github.io/coupons.json";
 TextStyle sheettext = TextStyle(fontSize: 17, fontWeight: FontWeight.w400);

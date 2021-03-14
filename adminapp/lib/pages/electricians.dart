@@ -19,9 +19,10 @@ class Electrician extends StatelessWidget {
         stream: FirebaseFirestore.instance
             .collection("Member")
             .where("accountType", isEqualTo: "Customer")
+            .orderBy("name")
             .limit(10)
             .snapshots()
-            .map(dealerfromSnapshots),
+            .map(electricianFromSnapshot),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -62,7 +63,8 @@ class Electrician extends StatelessWidget {
                           child: ListTile(
                             title: Text(
                                 snapshot.data[index].name ?? "Not Available"),
-                            subtitle: Text(snapshot.data[index].phone??'Not Available'),
+                            subtitle: Text(
+                                snapshot.data[index].phone ?? 'Not Available'),
                             onTap: () {
                               Navigator.push(
                                   context,

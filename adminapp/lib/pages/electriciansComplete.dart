@@ -17,10 +17,10 @@ class ElectricianComplete extends StatelessWidget {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection("Member")
-            .where("accountType", isEqualTo: "Customer")
+            .where("accountType", isEqualTo: "Customer").orderBy("name")
             .limit(10)
             .snapshots()
-            .map(dealerfromSnapshots),
+            .map(electricianFromSnapshot),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(

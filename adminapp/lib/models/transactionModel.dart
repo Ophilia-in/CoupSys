@@ -10,11 +10,17 @@ class TransactionRecord {
   final String receiverUid;
   final bool paid;
   final String transactionId;
+  final String senderName;
+  final String recieverName;
   final String dealerId;
   final String subType;
+  final DateTime markedAsPaidAt;
 
-  TransactionRecord(
+  TransactionRecord( 
       {this.type,
+      this.senderName,
+      this.markedAsPaidAt,
+      this.recieverName,
       this.subType,
       this.dealerId,
       this.points,
