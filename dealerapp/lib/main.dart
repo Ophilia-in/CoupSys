@@ -8,12 +8,17 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
+import 'dart:async';
 
 void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
   await Hive.initFlutter();
   Hive.registerAdapter(MyUserAdapter());
   await Hive.openBox<MyUser>(userBox);
-  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

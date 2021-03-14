@@ -4,9 +4,9 @@ import 'package:dealerapp/Screens/screenDecider.dart';
 import 'package:dealerapp/login/rootPage.dart';
 import 'package:dealerapp/login/userProvider.dart';
 import 'package:dealerapp/models/userModel.dart';
-import "package:images_picker/images_picker.dart";
 import 'package:dealerapp/services/constant.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -265,8 +265,7 @@ class _RegistrationState extends State<Registration> {
 
   Future uploadFile(BuildContext context) async {
     List<dynamic> templist = List<String>();
-    firebase_storage.Reference reference =
-        firebase_storage.FirebaseStorage.instance.ref();
+    StorageReference reference = FirebaseStorage.instance.ref();
     setState(() {
       _isbusy = true;
     });
@@ -276,10 +275,10 @@ class _RegistrationState extends State<Registration> {
         File file = File(temp.imageFile.path);
         String fileName = myUser.uid + i.toString();
         final ref = reference.child(fileName);
-        firebase_storage.UploadTask uploadTask = ref.putFile(file);
-        firebase_storage.TaskSnapshot storageTaskSnapshot;
-        await uploadTask.then((value) async {
-          if (value != null) {
+        StorageUploadTask uploadTask = ref.putFile(file);
+        StorageTaskSnapshot storageTaskSnapshot;
+        await uploadTask.onComplete.then((value) async {
+          if (value.error == null) {
             // value.ref.getDownloadURL().
             storageTaskSnapshot = value;
             await storageTaskSnapshot.ref.getDownloadURL().then((downloadUrl) {
@@ -333,6 +332,76 @@ class _RegistrationState extends State<Registration> {
       });
       Fluttertoast.showToast(msg: err.toString());
     });
+
+    // List<dynamic> templist = List<String>();
+    // firebase_storage.Reference reference =
+    //     firebase_storage.FirebaseStorage.instance.ref();
+    // setState(() {
+    //   _isbusy = true;
+    // });
+    // for (int i = 1; i <= 3; i++) {
+    //   if (images[i - 1] is ImageUploadModel) {
+    //     ImageUploadModel temp = images[i - 1];
+    //     File file = File(temp.imageFile.path);
+    //     String fileName = myUser.uid + i.toString();
+    //     final ref = reference.child(fileName);
+    //     firebase_storage.UploadTask uploadTask = ref.putFile(file);
+    //     firebase_storage.TaskSnapshot storageTaskSnapshot;
+    //     await uploadTask.then((value) async {
+    //       if (value != null) {
+    //         // value.ref.getDownloadURL().
+    //         storageTaskSnapshot = value;
+    //         await storageTaskSnapshot.ref.getDownloadURL().then((downloadUrl) {
+    //           templist.add(downloadUrl);
+    //         }, onError: (err) {
+    //           Fluttertoast.showToast(
+    //               msg: 'Number ${i + 1} file is not an image',
+    //               toastLength: Toast.LENGTH_LONG);
+    //         });
+    //       } else {
+    //         Fluttertoast.showToast(
+    //             msg: 'This file is not an image',
+    //             toastLength: Toast.LENGTH_LONG);
+    //       }
+    //     }, onError: (err) {
+    //       Fluttertoast.showToast(
+    //           msg: err.toString(), toastLength: Toast.LENGTH_LONG);
+    //     });
+    //   } else {
+    //     setState(() {
+    //       _isbusy = false;
+    //     });
+    //     Fluttertoast.showToast(
+    //         msg: "Attached File are not Images , or some error occured");
+    //     return;
+    //   }
+    // }
+    //
+    // await FirebaseFirestore.instance
+    //     .collection('Member')
+    //     .doc(myUser.uid)
+    //     .update({
+    //   'ids': templist,
+    //   'firmName': _firmName.text,
+    //   'reason': "Waiting For Approval",
+    //   'accountType': _type
+    // }).then((data) async {
+    //   // Navigator.pop(context);
+    //   myUser..ids = templist;
+    //   myUser..reason = "Waiting For Approval";
+    //   update(myUser);
+    //   setState(() {
+    //     _isbusy = false;
+    //   });
+    //   Navigator.pushAndRemoveUntil(context,
+    //       MaterialPageRoute(builder: (context) => Decider()), (route) => false);
+    //   Fluttertoast.showToast(msg: "Upload and Sccess");
+    // }).catchError((err) {
+    //   setState(() {
+    //     _isbusy = false;
+    //   });
+    //   Fluttertoast.showToast(msg: err.toString());
+    // });
   }
 
   Future _onAddImageClick(int index) async {

@@ -10,8 +10,8 @@ class MainLogin extends StatefulWidget {
 }
 
 class _MainLoginState extends State<MainLogin> {
-  bool _isBusy=false;
-  int _index=0;
+  bool _isBusy = false;
+  int _index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,8 @@ class _MainLoginState extends State<MainLogin> {
               Container(
                 height: _height,
                 width: _width,
-                child: Lottie.asset("assets/bulb2.json", fit: BoxFit.cover),
+                child: Lottie.asset("assets/bulb2.json",
+                    fit: BoxFit.cover, repeat: false),
               ),
               Container(
                 height: _height,
@@ -118,7 +119,8 @@ class _MainLoginState extends State<MainLogin> {
                                         'Google',
                                         style: TextStyle(
                                             fontSize: 20,
-                                            color: Colors.black, fontWeight: FontWeight.w600),
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     ),
                                   ],
@@ -148,7 +150,9 @@ class _MainLoginState extends State<MainLogin> {
       return Container(
           height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
-          child: Lottie.asset("assets/bulb.json" ,));
+          child: Lottie.asset(
+            "assets/bulb.json",
+          ));
     } else
       return Container(
         height: 0.0,
