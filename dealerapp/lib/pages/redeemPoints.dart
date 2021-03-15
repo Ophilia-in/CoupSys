@@ -32,7 +32,13 @@ class _RedeemPointsState extends State<RedeemPoints> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.cyan,
-          title: Text("Redeem Points"),
+          title: Text(
+            "Redeem Points",
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                .copyWith(color: Colors.white),
+          ),
           actions: [
             FlatButton(
               child: Text("View Points Chart"),
@@ -123,7 +129,7 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                     snapshot.data.data()["points"].toString() +
                                     " points ",
                                 style: TextStyle(
-                                    fontSize: 25,
+                                    fontSize: _height * 0.05,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.teal)),
                           ),
@@ -313,7 +319,8 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                                   .doc(newdoc.id)
                                                   .set({
                                                 "senderPhone": myUser.phone,
-                                                "receiverPhone": dealerResult.data()["phone"],
+                                                "receiverPhone": dealerResult
+                                                    .data()["phone"],
                                                 "paid": false,
                                                 "senderUid": myUser.uid,
                                                 "dealerId": myUser.dealerId,
@@ -342,7 +349,8 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                                     dealerResult.data()["name"],
                                                 "senderName": myUser.name,
                                                 "senderUid": myUser.uid,
-                                                "receiverPhone": dealerResult.data()["phone"],
+                                                "receiverPhone": dealerResult
+                                                    .data()["phone"],
                                                 "receiverUid":
                                                     dealerResult.data()["uid"],
                                                 "amount":

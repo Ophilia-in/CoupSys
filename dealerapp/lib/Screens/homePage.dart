@@ -223,7 +223,7 @@ class _HomePageState extends State<HomePage> {
                                                   fontWeight: FontWeight.w600)),
                                     )),
                               ),
-                              Expanded(
+                              _height>600?Expanded(
                                 flex: 8,
                                 child: Container(
                                   width: _width,
@@ -233,6 +233,9 @@ class _HomePageState extends State<HomePage> {
                                     fit: BoxFit.fill,
                                   ),
                                 ),
+                              ):Expanded(
+                                flex: 3,
+                                child: Container(),
                               ),
                             ],
                           ),

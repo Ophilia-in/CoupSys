@@ -68,7 +68,8 @@ Future<void> loginCallback() async {
       'earned': 0,
       'dealerId': "",
       'ids': null,
-      'reason': "Waiting For Approval"
+      'reason': "Waiting For Approval" , 
+      "firmName":null
     });
     await Hive.box<MyUser>(userBox).put(
         "myuser",

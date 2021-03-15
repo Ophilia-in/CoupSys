@@ -103,6 +103,7 @@ class _NotAllowedState extends State<NotAllowed> {
                                 myUser..dealerId = val.data()["dealerId"];
                                 myUser..reason = val.data()["reason"];
                                 myUser..phone = val.data()["phone"];
+                                myUser..firmName = val.data()["firmName"];
                                 print(myUser.uid);
                                 update(myUser);
                               });

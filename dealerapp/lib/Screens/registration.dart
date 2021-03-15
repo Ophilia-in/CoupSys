@@ -319,6 +319,7 @@ class _RegistrationState extends State<Registration> {
       // Navigator.pop(context);
       myUser..ids = templist;
       myUser..reason = "Waiting For Approval";
+      myUser..firmName = _firmName.text;
       update(myUser);
       setState(() {
         _isbusy = false;
@@ -406,11 +407,10 @@ class _RegistrationState extends State<Registration> {
 
   Future _onAddImageClick(int index) async {
     PickedFile abc;
-   
+
     try {
       abc = await _picker.getImage(source: ImageSource.gallery);
 
-      
       if (abc == null) {
         Fluttertoast.showToast(msg: "You did not select Picture");
         return;
