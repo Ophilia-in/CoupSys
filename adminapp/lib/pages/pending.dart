@@ -49,16 +49,18 @@ class _PendingTransactionsCompleteState
           if (snapshot.data.length == 0) {
             return Center(
               child: Text("Awsome!! No Pending Transactions"),
-            );
+            );  
           }
           return Container(
-              child: ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) {
-                    return IndividualTransactionRecord(
-                      transactionRecord: snapshot.data[index],
-                    );
-                  }));
+              child: Scrollbar(
+                child: ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return IndividualTransactionRecord(
+                        transactionRecord: snapshot.data[index],
+                      );
+                    }),
+              ));
         }
         if (snapshot.hasError) {
           return Center(

@@ -1,5 +1,5 @@
 import 'package:adminapp/models/dealerModel.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -20,9 +20,11 @@ class IndividualElectrician extends StatelessWidget {
               SizedBox(
                 width: 100,
                 height: 100,
-                child: CachedNetworkImage(
-                  imageUrl: electrician.photoUrl,
+                child: ExtendedImage.network(
+                 electrician.photoUrl,
+                   cache: true,
                 ),
+                
               ),
               ListTile(
                 title: Text("Name"),

@@ -33,7 +33,7 @@ class _AddCoupansState extends State<AddCoupans> {
             onPressed: () {
               Clipboard.setData(new ClipboardData(
                       text:
-                         couponurl))
+                         sheetsURl))
                   .then((value) {
                 Fluttertoast.showToast(msg: "Copied Link to Clipboard");
               }).catchError((onError) {
@@ -212,7 +212,7 @@ class _AddCoupansState extends State<AddCoupans> {
 
 Future<List<Coupan>> fetchData() async {
   final response = await http.get(
-     couponurl);
+     Uri.parse(couponurl));
   if (response.statusCode == 200) {
     var data = convert.jsonDecode(response.body) as List;
     return data.map((json) => Coupan.fromJson(json)).toList();

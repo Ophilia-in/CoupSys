@@ -40,175 +40,177 @@ class _HomePageState extends State<HomePage> {
           //   Colors.white,
           // ], begin: Alignment.topRight, end: Alignment.bottomLeft),
           ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Card(
-                elevation: 8,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: Container(
-                  // margin:
-                  //     EdgeInsets.symmetric(horizontal: _width / 25, vertical: 40),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      // color: Color(0xff000666),
+      child: Scrollbar(
+        child: ListView(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Card(
+                  elevation: 8,
+                  shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15))),
-                  height: _height / 8,
-                  width: _width / 2.5,
-                  child: FlatButton(
-                    child: Text(
-                      "Rejected Dealers",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
+                  child: Container(
+                    // margin:
+                    //     EdgeInsets.symmetric(horizontal: _width / 25, vertical: 40),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        // color: Color(0xff000666),
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    height: _height / 8,
+                    width: _width / 2.5,
+                    child: FlatButton(
+                      child: Text(
+                        "Rejected Dealers",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .subtitle1
+                                .copyWith(color: Colors.red)),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => RejectedDealers()));
+                      },
+                    ),
+                  ),
+                ),
+                Card(
+                  elevation: 8,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Container(
+                    // margin:
+                    //     EdgeInsets.symmetric(horizontal: _width / 25, vertical: 40),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        // color: Color(0xff000666),
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    height: _height / 8,
+                    width: _width / 2.5,
+                    child: FlatButton(
+                      child: Text(
+                        "Pending Transactions",
+                        style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
                           textStyle: Theme.of(context)
                               .textTheme
                               .subtitle1
-                              .copyWith(color: Colors.red)),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => RejectedDealers()));
-                    },
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 8,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: Container(
-                  // margin:
-                  //     EdgeInsets.symmetric(horizontal: _width / 25, vertical: 40),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      // color: Color(0xff000666),
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  height: _height / 8,
-                  width: _width / 2.5,
-                  child: FlatButton(
-                    child: Text(
-                      "Pending Transactions",
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w500,
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .subtitle1
-                            .copyWith(color: Colors.blue),
+                              .copyWith(color: Colors.blue),
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => PendingTransactionsComplete()));
+                      },
                     ),
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => PendingTransactionsComplete()));
-                    },
                   ),
                 ),
-              ),
-            ],
-          ),
-          display1(
-            context,
-            () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Logs()));
-            },
-            "View Transaction Log",
-            _height,
-            _width,
-            // Colors.green,
-            // Color(0xff4CD7D0),
-            Color(0xff05445E),
-            Color(0xff189AB4),
-            // Colors.tealAccent,
-            Color(0xFF584846),
-          ),
-          GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 2,
-            children: [
-              display2(context, () {
+              ],
+            ),
+            display1(
+              context,
+              () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Verify()));
+                    context, MaterialPageRoute(builder: (context) => Logs()));
               },
-                  "Verify Dealers",
-                  _height,
-                  _width / 2,
-                  // Color(0xffFBE7C6),
-                  // Color(0xffFBE7C6),
-                  // Color(0xff29A0B1),
-                  // Color(0xff29A0B1),
-                  Color(0xff1DC690),
-                  Color(0xff1DC690),
-
-                  // Colors.cyan,
-                  // Colors.white,
-                  Color(0xFF584846),
-                  "verify",
-                  Alignment.topLeft,
-                  Alignment.bottomRight),
-              display2(context, () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddCoupans()));
-              },
-                  "Add Coupans",
-                  _height,
-                  _width / 2,
-                  // Color(0xffB4F8C8),
-                  // Color(0xffB4F8C8),
-
-                  Color(0xfff5b461),
-                  Color(0xfff5b461),
-                  Color(0xFF584846),
-                  "coupon",
-                  Alignment.topRight,
-                  Alignment.bottomLeft),
-              display2(
-                context,
-                () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Dealers()));
+              "View Transaction Log",
+              _height,
+              _width,
+              // Colors.green,
+              // Color(0xff4CD7D0),
+              Color(0xff05445E),
+              Color(0xff189AB4),
+              // Colors.tealAccent,
+              Color(0xFF584846),
+            ),
+            GridView.count(
+              childAspectRatio: 2.5,
+              shrinkWrap: true,
+              crossAxisCount: 2,
+              children: [
+                display2(context, () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Verify()));
                 },
-                "View Dealers",
-                _height,
-                _width / 2,
-                // Color(0xff0e918c),
-                // Color(0xff0e918c),
-                Color(0xffe6739f),
-                Color(0xffe6739f),
+                    "Verify Dealers",
+                    _height,
+                    _width / 2,
+                    // Color(0xffFBE7C6),
+                    // Color(0xffFBE7C6),
+                    // Color(0xff29A0B1),
+                    // Color(0xff29A0B1),
+                    Color(0xff1DC690),
+                    Color(0xff1DC690),
 
-                // Color(0xffFFAEBC),
-                // Color(0xffFFAEBC),
-                Color(0xFF584846), "dealer",
-                Alignment.bottomLeft,
-                Alignment.topRight,
-              ),
-              display2(context, () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Electrician()));
-              },
-                  "View Electricians",
+                    // Colors.cyan,
+                    // Colors.white,
+                    Color(0xFF584846),
+                    "verify",
+                    Alignment.topLeft,
+                    Alignment.bottomRight),
+                display2(context, () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddCoupans()));
+                },
+                    "Add Coupans",
+                    _height,
+                    _width / 2,
+                    // Color(0xffB4F8C8),
+                    // Color(0xffB4F8C8),
+
+                    Color(0xfff5b461),
+                    Color(0xfff5b461),
+                    Color(0xFF584846),
+                    "coupon",
+                    Alignment.topRight,
+                    Alignment.bottomLeft),
+                display2(
+                  context,
+                  () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Dealers()));
+                  },
+                  "View Dealers",
                   _height,
                   _width / 2,
-                  // Color(0xffA0E7E5),
-                  // Color(0xffA0E7E5),
+                  // Color(0xff0e918c),
+                  // Color(0xff0e918c),
+                  Color(0xffe6739f),
+                  Color(0xffe6739f),
 
-                  Color(0xffec524b),
-                  Color(0xffec524b),
+                  // Color(0xffFFAEBC),
+                  // Color(0xffFFAEBC),
+                  Color(0xFF584846), "dealer",
+                  Alignment.bottomLeft,
+                  Alignment.topRight,
+                ),
+                display2(context, () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Electrician()));
+                },
+                    "View Electricians",
+                    _height,
+                    _width / 2,
+                    // Color(0xffA0E7E5),
+                    // Color(0xffA0E7E5),
 
-                  // Colors.red,
-                  // Colors.white,
-                  Color(0xFF584846),
-                  "electrician",
-                  Alignment.bottomRight,
-                  Alignment.topLeft)
-            ],
-          ),
-        ],
+                    Color(0xffec524b),
+                    Color(0xffec524b),
+
+                    // Colors.red,
+                    // Colors.white,
+                    Color(0xFF584846),
+                    "electrician",
+                    Alignment.bottomRight,
+                    Alignment.topLeft)
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

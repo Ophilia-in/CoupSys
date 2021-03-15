@@ -34,28 +34,30 @@ class _LogsState extends State<Logs> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Container(
-                child: ListView.builder(
-                    itemCount: snapshot.data.length + 1,
-                    itemBuilder: (context, index) {
-                      if (index == snapshot.data.length) {
-                        return ListTile(
-                          title: Center(
-                            child: TextButton(
-                              child: Text("View ALL"),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LogsComplete()));
-                              },
+                child: Scrollbar(
+                  child: ListView.builder(
+                      itemCount: snapshot.data.length + 1,
+                      itemBuilder: (context, index) {
+                        if (index == snapshot.data.length) {
+                          return ListTile(
+                            title: Center(
+                              child: TextButton(
+                                child: Text("View ALL"),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LogsComplete()));
+                                },
+                              ),
                             ),
-                          ),
+                          );
+                        }
+                        return IndividualLog(
+                          log: snapshot.data[index],
                         );
-                      }
-                      return IndividualLog(
-                        log: snapshot.data[index],
-                      );
-                    }));
+                      }),
+                ));
           }
           if (snapshot.hasError) {
             return Center(

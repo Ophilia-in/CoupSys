@@ -1,7 +1,7 @@
 import 'package:adminapp/Screens/mainScreen.dart';
 import 'package:adminapp/rest/ids.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -282,54 +282,67 @@ class _IndividualVerifyState extends State<IndividualVerify> {
         ],
       ),
       body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                width: 100,
-                height: 100,
-                child: CachedNetworkImage(
-                  imageUrl: widget.data.data()["photoUrl"],
+        child: Scrollbar(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: ExtendedImage.network(
+                    widget.data.data()["photoUrl"],
+                  ),
                 ),
-              ),
-              ListTile(
-                title: Text("Name"),
-                subtitle: Text(widget.data.data()["name"]),
-              ),
-              ListTile(
-                title: Text("Uid"),
-                subtitle: Text(widget.data.data()["uid"]),
-              ),
-              ListTile(
-                title: Text("Account Type"),
-                subtitle: Text(widget.data.data()["accountType"]),
-              ),
-              ListTile(
-                title: Text("Email"),
-                subtitle: Text(widget.data.data()["emailID"]),
-              ),
-              ListTile(
-                title: Text("Firm Name"),
-                subtitle: Text(widget.data.data()["firmName"]??"Not Available"),
-              ),
-              ListTile(
-                title: Text("Created At"),
-                subtitle: Text(DateFormat('dd MMM y kk:mm')
-                    .format(widget.data.data()["createdAt"].toDate())),
-              ),
-              ListTile(
+                ListTile(
+                  title: Text("Name"),
+                  subtitle: Text(widget.data.data()["name"]),
+                ),
+                ListTile(
+                  title: Text("Uid"),
+                  subtitle: Text(widget.data.data()["uid"]),
+                ),
+                ListTile(
+                  title: Text("Account Type"),
+                  subtitle: Text(widget.data.data()["accountType"]),
+                ),
+                ListTile(
+                  title: Text("Email"),
+                  subtitle: Text(widget.data.data()["emailID"]),
+                ),
+                ListTile(
+                  title: Text("Firm Name"),
+                  subtitle: Text(widget.data.data()["firmName"]??"Not Available"),
+                ),
+                ListTile(
+                  title: Text("Created At"),
+                  subtitle: Text(DateFormat('dd MMM y kk:mm')
+                      .format(widget.data.data()["createdAt"].toDate())),
+                ),
+                ExpansionTile(
+                  children: [
+                   (widget.data.data()["ids"] == null ||
+                        widget.data.data()["ids"].length != 3)
+                        ? Text("Ids Not yet added")
+                        :  Ids(widget.data.data()["ids"], _width)
+                  ],
                   title: Text(
-                "Ids  :",
-                style: Theme.of(context).textTheme.headline5,
-              )),
-              SizedBox(
-                height: 10,
-              ),
-              (widget.data.data()["ids"] == null ||
-                      widget.data.data()["ids"].length != 3)
-                  ? Text("Ids Not yet added")
-                  : Ids(widget.data.data()["ids"], _width)
-            ],
+                    "Ids  :",
+                    style: Theme.of(context).textTheme.headline5,
+                  )),
+                // ListTile(
+                //     title: Text(
+                //   "Ids  :",
+                //   style: Theme.of(context).textTheme.headline5,
+                // )),
+                SizedBox(
+                  height: 10,
+                ),
+                // (widget.data.data()["ids"] == null ||
+                //         widget.data.data()["ids"].length != 3)
+                //     ? Text("Ids Not yet added")
+                //     : Ids(widget.data.data()["ids"], _width)
+              ],
+            ),
           ),
         ),
       ),
