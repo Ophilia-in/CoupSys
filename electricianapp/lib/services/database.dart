@@ -26,9 +26,9 @@ List<TransactionRecord> transactionRecordFromSnapshots(QuerySnapshot snapshot) {
         date: doc.data()['date'].toDate(),
         coupancode: doc.data()['coupancode'],
         dealerId: doc.data()['dealerId'],
-        senderName: doc.data()['senderName'],
-        recieverName: doc.data()['receiverName'],
-        markedAsPaidAt: doc.data()["markedAsPaidAt"] == null
+        senderName: doc.data()['senderName']??"Not Availble",
+        recieverName: doc.data()['receiverName']??"Not Availble",
+         markedAsPaidAt: doc.data()["markedAsPaidAt"] == null
             ? null
             : doc.data()["markedAsPaidAt"].toDate());
   }).toList();

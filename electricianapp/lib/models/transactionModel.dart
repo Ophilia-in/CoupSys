@@ -14,7 +14,7 @@ class TransactionRecord {
   final String subType;
   final String recieverName;
   final String senderName;
-  final String markedAsPaidAt;
+  final DateTime markedAsPaidAt;
 
   TransactionRecord(
       {this.type,this.recieverName, this.senderName, this.markedAsPaidAt, 

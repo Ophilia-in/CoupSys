@@ -160,16 +160,29 @@ class _HomePageState extends State<HomePage> {
                                             CupertinoPageRoute(
                                                 builder: (context) =>
                                                     AddCoupan())),
-                                        child: Text("+ New Coupon",
-                                            style: GoogleFonts.poppins(
-                                                textStyle: Theme.of(context)
-                                                    .textTheme
-                                                    .headline6
-                                                    .copyWith(
+                                        child: Text(
+                                          "+ New Coupon",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: _height < 600
+                                                  ? Theme.of(context)
+                                                      .textTheme
+                                                      .subtitle1
+                                                      .copyWith(
                                                         color:
                                                             Color(0xfff1f6f9),
                                                         fontWeight:
-                                                            FontWeight.w500))),
+                                                            FontWeight.w500,
+                                                      )
+                                                  : Theme.of(context)
+                                                      .textTheme
+                                                      .headline6
+                                                      .copyWith(
+                                                          color:
+                                                              Color(0xfff1f6f9),
+                                                          fontWeight:
+                                                              FontWeight.w500)),
+                                          overflow: TextOverflow.fade,
+                                        ),
                                       ),
                                     ),
                                     Container(
@@ -197,16 +210,29 @@ class _HomePageState extends State<HomePage> {
                                                         RedeemPoints()));
                                           }
                                         },
-                                        child: Text("Redeem Points",
-                                            style: GoogleFonts.poppins(
-                                                textStyle: Theme.of(context)
-                                                    .textTheme
-                                                    .headline6
-                                                    .copyWith(
+                                        child: Text(
+                                          "Redeem Points",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: _height < 600
+                                                  ? Theme.of(context)
+                                                      .textTheme
+                                                      .subtitle1
+                                                      .copyWith(
                                                         color:
                                                             Color(0xfff1f6f9),
                                                         fontWeight:
-                                                            FontWeight.w500))),
+                                                            FontWeight.w500,
+                                                      )
+                                                  : Theme.of(context)
+                                                      .textTheme
+                                                      .headline6
+                                                      .copyWith(
+                                                          color:
+                                                              Color(0xfff1f6f9),
+                                                          fontWeight:
+                                                              FontWeight.w500)),
+                                          overflow: TextOverflow.fade,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -247,17 +273,22 @@ class _HomePageState extends State<HomePage> {
                                                   fontWeight: FontWeight.w600)),
                                     )),
                               ),
-                              Expanded(
-                                flex: 8,
-                                child: Container(
-                                  width: _width,
-                                  color: Colors.blue,
-                                  child: Image.asset(
-                                    "assets/people.png",
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
+                              _height > 600
+                                  ? Expanded(
+                                      flex: 8,
+                                      child: Container(
+                                        width: _width,
+                                        color: Colors.blue,
+                                        child: Image.asset(
+                                          "assets/people.png",
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    )
+                                  : Expanded(
+                                      flex: 3,
+                                      child: Container(),
+                                    ),
                             ],
                           ),
                         ),
