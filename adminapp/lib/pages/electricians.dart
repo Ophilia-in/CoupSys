@@ -26,7 +26,7 @@ class Electrician extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(
-              child: Text(snapshot.error.toString() + "has Occurred"),
+              child: SelectableText(snapshot.error.toString() + "has Occurred"),
             );
           } else {
             switch (snapshot.connectionState) {

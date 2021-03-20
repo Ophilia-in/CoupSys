@@ -12,7 +12,6 @@ class Log {
   final String transactionId;
   final String dealerId;
   final String subType;
-
   final String senderName;
   final String recieverName;
   final DateTime markedAsPaidAt;

@@ -140,7 +140,8 @@ class _IndividualVerifyState extends State<IndividualVerify> {
                     "uid": widget.data.data()["uid"],
                     "dealerId": widget.data.data()["uid"].substring(0, 3) +
                         widget.data.data()["phone"].toString().substring(3, 7),
-                    "phone": widget.data.data()["phone"]
+                    "phone": widget.data.data()["phone"],
+                    "name":widget.data.data()["name"] , 
                   }).whenComplete(() {
                     FirebaseFirestore.instance
                         .collection("Member")

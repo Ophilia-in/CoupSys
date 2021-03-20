@@ -4,14 +4,14 @@ import 'package:adminapp/rest/ids.dart';
 import 'package:excel/excel.dart';
 import 'package:extended_image/extended_image.dart';
 
-import 'dart:html' as html;
-import 'dart:js' as js;
+// import 'dart:html' as html;
+// import 'dart:js' as js;
 import 'package:flutter/material.dart';
 
 import 'dart:convert' show utf8;
 
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' show AnchorElement;
+// import 'dart:html' show AnchorElement;
 import 'package:intl/intl.dart';
 
 class IndividualDealer extends StatelessWidget {
@@ -25,7 +25,7 @@ class IndividualDealer extends StatelessWidget {
       appBar: AppBar(
         title: Text(dealer.firmName),
         actions: [
-          FlatButton(
+          TextButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => DealerTransactionLog(
@@ -174,13 +174,4 @@ class IndividualDealer extends StatelessWidget {
       ),
     );
   }
-}
-
-void saveTextFile(String text, String filename) {
-  AnchorElement()
-    ..href =
-        '${Uri.dataFromString(text, mimeType: 'text/plain', encoding: utf8)}'
-    ..download = filename
-    ..style.display = 'none'
-    ..click();
 }

@@ -1,13 +1,14 @@
+import 'package:adminapp/models/transactionModel.dart';
 import 'package:adminapp/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'logModel.dart';
 import 'package:intl/intl.dart';
 
-class IndividualLog extends StatelessWidget {
-  final Log log;
+class IndividualElectricianLog extends StatelessWidget {
+  final TransactionRecord log;
 
-  const IndividualLog({Key key, this.log}) : super(key: key);
+  const IndividualElectricianLog({Key key, this.log}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class IndividualLog extends StatelessWidget {
   }
 }
 
-credit(Log log) {
+credit(TransactionRecord log) {
   return ExpansionTile(
       childrenPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       expandedAlignment: Alignment.centerLeft,
@@ -30,28 +31,18 @@ credit(Log log) {
       children: [
         Text("Coupan Code : " + log.coupancode),
         Text(
-          "Reciever Phone : " + log.receiverPhone ?? "Null",  
+          "Reciever Phone : " + log.receiverPhone ,
           textAlign: TextAlign.left,
         ),
-        Text("Reciever Name : " + log.recieverName) ,
+        Text("Reciever Name : " + log.recieverName),
         Text("Transaction Id : " + log.transactionId),
         FlatButton(
             disabledColor: Colors.green,
             color: Colors.blue,
-            onPressed: log.paid
-                ? null
-                : () async {
-                    await markTransactionasPaid(log).then((value) {
-                      if (value == true) {
-                        Fluttertoast.showToast(msg: "Marked As Paid");
-                      } else {
-                        Fluttertoast.showToast(msg: value.toString());
-                      }
-                    });
-                  },
+            onPressed: null,
             child: Center(
                 child: Text(
-              log.paid ? "Credited" : "Mark As Credited",
+              log.paid ? "Credited" : "Not yet",
               style: TextStyle(color: Colors.white),
             )))
       ],
@@ -66,7 +57,7 @@ credit(Log log) {
       trailing: Text(DateFormat('dd MMM y kk:mm').format(log.date)));
 }
 
-redeemed(Log log) {
+redeemed(TransactionRecord log) {
   return ExpansionTile(
       childrenPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       expandedAlignment: Alignment.centerLeft,
@@ -91,32 +82,18 @@ redeemed(Log log) {
         Text("Sender Name : " + log.senderName),
         Text("Transaction Id : " + log.transactionId),
         log.markedAsPaidAt != null
-            ? Text("Paid at : " + DateFormat('dd MMM y kk:mm').format(log.date))
+            ? Text("Paid at : " + DateFormat('dd MMM y kk:mm').format(log.markedAsPaidAt))
             : Text("Paid At : " + "Not yet Paid"),
         FlatButton(
             disabledColor: Colors.green,
             color: Colors.blue,
-            onPressed: (log.paid == false &&
-                    (log.recieverName == "Admin" ||
-                        log.recieverName == '"Admin"'))
-                ? () async {
-                    await markTransactionasPaid(log).then((value) {
-                      if (value == true) {
-                        Fluttertoast.showToast(msg: "Marked As Paid");
-                      } else {
-                        Fluttertoast.showToast(msg: value.toString());
-                      }
-                    });
-                  }
-                : null,
+            onPressed:null,
             child: Center(
                 child: Text(
               (log.paid == true)
                   ? "Paid"
-                  : (log.recieverName == "Admin" ||
-                          log.recieverName == '"Admin"')
-                      ? "Mark As Paid"
-                      : "You cant Mark it as Paid",
+                  : 
+                      "Not Yet Paid",
               style: TextStyle(color: Colors.white),
             )))
       ],

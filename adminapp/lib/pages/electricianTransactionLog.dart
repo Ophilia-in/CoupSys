@@ -1,4 +1,7 @@
+import 'package:adminapp/models/individualElectricianTransaction.dart';
+import 'package:adminapp/models/individualLog.dart';
 import 'package:adminapp/models/individualTransaction.dart';
+import 'package:adminapp/models/logModel.dart';
 import 'package:adminapp/models/transactionModel.dart';
 import 'package:adminapp/models/userModel.dart';
 import 'package:adminapp/pages/dealerTransactionLogComplete.dart';
@@ -12,15 +15,15 @@ import 'package:provider/provider.dart';
 
 import '../services/constant.dart';
 
-class DealerTransactionLog extends StatefulWidget {
-  DealerTransactionLog({Key key, this.uid}) : super(key: key);
+class ElectricianTransactionLog extends StatefulWidget {
+  ElectricianTransactionLog({Key key, this.uid}) : super(key: key);
 
   final String uid;
   @override
-  _DealerTransactionLog createState() => _DealerTransactionLog();
+  _ElectricianTransactionLog createState() => _ElectricianTransactionLog();
 }
 
-class _DealerTransactionLog extends State<DealerTransactionLog> {
+class _ElectricianTransactionLog extends State<ElectricianTransactionLog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,42 +35,40 @@ class _DealerTransactionLog extends State<DealerTransactionLog> {
       body: StreamBuilder<List<TransactionRecord>>(
         stream: FirebaseFirestore.instance
             .collection("Member")
-            .doc(dbAdminUiD)
+            .doc(widget.uid)
             .collection("passbook")
-            .where("senderUid", isEqualTo: widget.uid)
             .orderBy('date', descending: true)
-            .limit(10)
             .snapshots()
             .map(transactionRecordFromSnapshots),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Container(
                 child: ListView.builder(
-                    itemCount: snapshot.data.length + 1,
+                    itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
-                      if (index == snapshot.data.length) {
-                        return ListTile(
-                          title: Center(
-                            child: TextButton(
-                              child: Text(
-                                "View ALL",
-                                style: TextStyle(color: Color(0xff000666)),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            DealerTransactionLogComplete(
-                                              uid: widget.uid,
-                                            )));
-                              },
-                            ),
-                          ),
-                        );
-                      }
-                      return IndividualTransactionRecord(
-                        transactionRecord: snapshot.data[index],
+                      // if (index == snapshot.data.length) {
+                      //   return ListTile(
+                      //     title: Center(
+                      //       child: TextButton(
+                      //         child: Text(
+                      //           "View ALL",
+                      //           style: TextStyle(color: Color(0xff000666)),
+                      //         ),
+                      //         onPressed: () {
+                      //           Navigator.push(
+                      //               context,
+                      //               MaterialPageRoute(
+                      //                   builder: (context) =>
+                      //                       DealerTransactionLogComplete(
+                      //                         uid: widget.uid,
+                      //                       )));
+                      //         },
+                      //       ),
+                      //     ),
+                      //   );
+                      // }
+                      return IndividualElectricianLog(
+                        log: snapshot.data[index],
                       );
                     }));
           }

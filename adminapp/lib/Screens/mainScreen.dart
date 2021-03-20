@@ -1,5 +1,6 @@
 import 'package:adminapp/Screens/profilePage.dart';
 import 'package:adminapp/models/userModel.dart';
+import 'package:adminapp/pages/exportPages/export.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import '../services/constant.dart';
@@ -17,6 +18,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   MyUser myUser = Hive.box<MyUser>(userBox).get("myuser");
 
+  final GlobalKey<ScaffoldState> _scaffKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -28,6 +31,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffKey,
         backgroundColor: Colors.blue,
         appBar: AppBar(
           titleSpacing: 10,
@@ -61,6 +65,14 @@ class _MainScreenState extends State<MainScreen> {
             )
           ],
         ),
-        body: HomePage());
+        body: HomePage(),
+        floatingActionButton: MaterialButton(
+          child: Text("Export"),
+          textColor: Colors.white,
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Export()));
+          },
+        ));
   }
 }

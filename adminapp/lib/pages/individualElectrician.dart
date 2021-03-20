@@ -1,4 +1,5 @@
 import 'package:adminapp/models/dealerModel.dart';
+import 'package:adminapp/pages/electricianTransactionLog.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +13,19 @@ class IndividualElectrician extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(electrician.name),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ElectricianTransactionLog(
+                          uid: electrician.uid,
+                        )));
+              },
+              child: Text(
+                "View Log",
+                style: TextStyle(color: Colors.white),
+              ))
+        ],
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -21,10 +35,9 @@ class IndividualElectrician extends StatelessWidget {
                 width: 100,
                 height: 100,
                 child: ExtendedImage.network(
-                 electrician.photoUrl,
-                   cache: true,
+                  electrician.photoUrl,
+                  cache: true,
                 ),
-                
               ),
               ListTile(
                 title: Text("Name"),
